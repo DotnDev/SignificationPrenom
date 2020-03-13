@@ -1,0 +1,52 @@
+
+{% extends ('base.html.twig')%}
+
+
+      {% block title %}TEST{% endblock %}
+
+      {% block body %}
+
+
+          {% if nains %}
+
+              <table class="table table-striped table-bordered table-sm" style="text-align:center">
+
+                  <th colspan="4" > Users </th>
+
+                  <tr>
+
+                      <td> id </td>
+                      <td> username </td>
+                      <td> firstname </td>
+                      <td> lastname </td>
+                      <td> password </td>
+                      <td> email </td>
+
+
+                  </tr>
+
+
+                  {% for user in users%}
+                      <tr>
+                          <td> {{ user.id }} </td>
+                          <td> {{ user.username }} </td>
+                          <td> {{ user.firstname }} </td>
+                          <td> {{ user.lastname }} </td>
+                          <td> {{ user.password }} </td>
+                          <td> {{ user.email }} </td>
+
+
+                      </tr>
+
+                  {% endfor %}
+
+              </table>
+
+          {% else %}
+
+              <p> No users to display </p>
+
+
+          {% endif %}
+
+      {% endblock %}
