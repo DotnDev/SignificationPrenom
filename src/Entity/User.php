@@ -49,6 +49,17 @@ class User
      *      charsetMessage = "This value does not match the expected {{ charset }} charset.")
      */
     private $firstpassword;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 6,
+     *      max = 64,
+     *      minMessage = "Your password must be at least {{ limit }} characters long",
+     *      maxMessage = "Your password cannot be longer than {{ limit }} characters",
+     *      charsetMessage = "This value does not match the expected {{ charset }} charset.")
+     */
     private $secondpassword;
 
 

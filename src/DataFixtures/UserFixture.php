@@ -13,10 +13,11 @@ class UserFixture extends Fixture
 
 
             $user = new User();
-            $user->setFirstName('Billy');
+            $user->setFirstName('Bill');
             $user->setLastName('Crosby');
             $user->setUserName('Billy66');
-            $user->setPassword('password');
+            $user->setFirstPassword('password');
+            $user->setSecondPassword('password');
             $user->setEmail('email@gmail.com');
             $manager->persist($user);
 
