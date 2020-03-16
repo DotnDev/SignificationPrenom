@@ -18,7 +18,7 @@ class User
      * @ORM\Column(type="guid")
      * @ORM\GeneratedValue(strategy="UUID")
      */
-    private $id = 0;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -48,7 +48,9 @@ class User
      *      maxMessage = "Your password cannot be longer than {{ limit }} characters",
      *      charsetMessage = "This value does not match the expected {{ charset }} charset.")
      */
-    private $password;
+    private $firstpassword;
+    private $secondpassword;
+
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -57,6 +59,15 @@ class User
      */
     private $email;
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function setUserName($username)
     {
@@ -89,14 +100,24 @@ class User
     }
 
 
-    public function setPassword($password)
+    public function setFirstPassword($firstpassword)
     {
-        $this->password = $password;
+        $this->firstpassword = $firstpassword;
     }
 
-    public function getPassword()
+    public function getFirstPassword()
     {
-        return $this->password;
+        return $this->firstpassword;
+    }
+
+    public function setSecondPassword($secondpassword)
+    {
+        $this->secondpassword = $secondpassword;
+    }
+
+    public function getSecondPassword()
+    {
+        return $this->secondpassword;
     }
 
     public function setEmail($email)

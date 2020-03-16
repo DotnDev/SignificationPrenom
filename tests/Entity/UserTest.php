@@ -11,6 +11,10 @@ use PHPUnit\Framework\TestCase;
 class UserTest extends TestCase
 {
 
+
+    /* These tests (testWeCanGet...) are potentially redundant as we are already testing the getters and setters with next tests? (notEmpty) */
+    /* For email and passwords, how to test their validity? */
+
     public function testWeCanGetUserName()
     {
         $user = new User();
@@ -21,8 +25,8 @@ class UserTest extends TestCase
     public function testWeCanGetFirstName()
     {
         $user = new User();
-        $user->setFirstName('Billy');
-        $this->assertEquals($user->getFirstName(),'Billy');
+        $user->setFirstName('Bill');
+        $this->assertEquals($user->getFirstName(),'Bill');
     }
 
     public function testWeCanGetLastName()
@@ -33,11 +37,18 @@ class UserTest extends TestCase
     }
 
 
-    public function testWeCanGetPassword()
+    public function testWeCanGetFirstPassword()
     {
         $user = new User();
-        $user->setPassword('password');
-        $this->assertEquals($user->getPassword(),'password');
+        $user->setFirstPassword('password');
+        $this->assertEquals($user->getFirstPassword(),'password');
+    }
+
+    public function testWeCanGetSecondPassword()
+    {
+        $user = new User();
+        $user->setSecondPassword('password');
+        $this->assertEquals($user->getSecondPassword(),'password');
     }
 
     public function testWeCanGetEmail()
@@ -47,12 +58,19 @@ class UserTest extends TestCase
         $this->assertEquals($user->getEmail(),'email@gmail.com');
     }
 
+    public function testIdIsGenerated()
+    {
+        $user = new User();
+        $user->setId('azerty');
+        $this->assertNotEmpty($user->getId());
+    }
+
 
     public function testUserNameIsNotEmpty()
     {
         $user = new User();
         $user->setUserName('Billy66');
-        $this->assertNotEmpty($user->getUserName(),'Billy');
+        $this->assertNotEmpty($user->getUserName(),'username is empty');
     }
 
 
@@ -60,29 +78,46 @@ class UserTest extends TestCase
     {
         $user = new User();
         $user->setFirstName('Billy');
-        $this->assertNotEmpty($user->getFirstName(),'Billy');
+        $this->assertNotEmpty($user->getFirstName(),'firstname is empty');
     }
 
     public function testLastNameIsNotEmpty()
     {
         $user = new User();
         $user->setLastName('Billy');
-        $this->assertNotEmpty($user->getLastName(),'Crosby');
+        $this->assertNotEmpty($user->getLastName(),'lastname is empty');
     }
 
-    public function testPasswordIsNotEmpty()
+    public function testFirstPasswordIsNotEmpty()
     {
         $user = new User();
-        $user->setPassword('password');
-        $this->assertNotEmpty($user->getPassword(),'password');
+        $user->setFirstPassword('password');
+        $this->assertNotEmpty($user->getFirstPassword(),'first password is empty');
+    }
+
+    public function testSecondPasswordIsNotEmpty()
+    {
+        $user = new User();
+        $user->setSecondPassword('password');
+        $this->assertNotEmpty($user->getSecondPassword(),'second password is empty');
     }
 
     public function testEmailIsNotEmpty()
     {
         $user = new User();
         $user->setEmail('email@gmail.com');
-        $this->assertNotEmpty($user->getEmail(),'email@gmail.com');
+        $this->assertNotEmpty($user->getEmail(),'email is empty');
     }
+
+    public function testBothPasswordsMatch()
+    {
+        $user = new User();
+        $user->setFirstPassword('password');
+        $user->setSecondPassword('password');
+        $this->assertSame($user->getFirstPassword(),$user->getSecondPassword(),'passwords do not match');
+    }
+
+
 
 
 
